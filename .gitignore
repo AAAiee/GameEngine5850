@@ -1,0 +1,17 @@
+# Directories
+.vs/
+Binaries/
+out/
+build/
+
+# Files
+*.vcxproj
+*.vcxproj.user
+*.vcxproj.filters
+*.sln
+*.log
+CMakeSettings.json
+Makefile
+
+# Exclude
+!Vendor/Binaries
