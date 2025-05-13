@@ -2,6 +2,6 @@
 
 int main()
 {
-	_declspec(dllimport) void Core::PrintHelloWorld();
-	Core::PrintHelloWorld();
-}
+
+
+};
