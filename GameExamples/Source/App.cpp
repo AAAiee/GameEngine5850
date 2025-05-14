@@ -1,7 +1,16 @@
-#include "Core/Core.h"
+#include "Engine.h"
 
-int main()
-{
+class ExampleApp : public GME::Application {
+public:
+    ExampleApp() {
 
+    }
 
+    ~ExampleApp() {
+
+    }
 };
+
+GME::Application* GME::createApplication() {
+    return new ExampleApp();
+}
