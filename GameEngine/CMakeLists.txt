@@ -1,26 +1,39 @@
+project(GameEngine)
+
 #Collect all source files in ENGINE_SRC
 file(GLOB_RECURSE ENGINE_SRC CONFIGURE_DEPENDS "Source/*.cpp" "Source/*.h")
 
+include(FetchContent)
 
-# add build path to SDL3 
-set(SDL_DISABLE_GIT_INFO ON CACHE BOOL "" FORCE)
-set(SDL_STATIC ON CACHE BOOL "" FORCE) 
-set(SLD_SHARED OFF CACHE BOOL "" FORCE)
-set(SDL_PATH ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/sdl3)
-add_subdirectory(${SDL_PATH} EXCLUDE_FROM_ALL)
+# spdlog
+FetchContent_Declare(
+    spdlog
+    GIT_REPOSITORY https://github.com/gabime/spdlog.git
+    GIT_TAG v1.x
+)
+FetchContent_MakeAvailable(spdlog)
+
+#SDL
+set (SDL_STATIC ON CACHE BOOL "Build static sdl3" FORCE)
+set (SDL_SHARED OFF CACHE BOOL "Disable shared SDL3 build" FORCE)
+FetchContent_Declare(
+    SDL
+    GIT_REPOSITORY https://github.com/libsdl-org/SDL.git
+    GIT_TAG main
+)
+FetchContent_MakeAvailable(SDL)
 
 # Create a static linked lib target called Engine
 add_library(Engine STATIC ${ENGINE_SRC})
+
+# link external libraries
+target_link_libraries(Engine PRIVATE spdlog::spdlog SDL3-static)
 
 #Expose the Source/ directory as a public include path while 
 #the project is built from the source tree
 target_include_directories(Engine 
     PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Source>
 )   
-
-#Links SDL3 to Engine statically
-target_link_libraries(Engine PRIVATE SDL3::SDL3-static)
-target_include_directories(Engine PRIVATE ${SDL_PATH}/include)
 
 target_compile_definitions(Engine
     PUBLIC

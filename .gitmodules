@@ -1,3 +1,0 @@
-[submodule "GameEngine/Vendor/sdl3"]
-	path = GameEngine/ThirdParty/sdl3
-	url = https://github.com/libsdl-org/SDL.git

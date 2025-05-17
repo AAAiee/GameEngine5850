@@ -2,6 +2,7 @@
 #  App/CMakeLists.txt  – builds the sample game executable
 # -------------------------------------------------------------
 
+project(GameExamples)
 # 1. Collect every *.cpp / *.h under Source/
 file(GLOB_RECURSE APP_SRC CONFIGURE_DEPENDS
      "Source/*.cpp" "Source/*.h")

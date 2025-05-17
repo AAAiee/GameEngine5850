@@ -1,6 +1,7 @@
 #include "Application.h"
-#include <iostream>
+#include "Log/Logger.h"
 
+#include <iostream>
 namespace GME {
     Application::Application() {
 
@@ -12,5 +13,6 @@ namespace GME {
 
     void Application::run() {
         std::cout << "Running!" << std::endl;
+        GME_ENGINE_INFO("RUNING!!!! from logger");
     }
 }
